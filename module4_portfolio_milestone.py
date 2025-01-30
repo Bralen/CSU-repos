@@ -9,11 +9,28 @@ class ItemToPurchase:
         print(self.name + " " + str(self.quantity) + " @ $" + str(self.price) + " = " + str(self.price * self.quantity))
 
 def main():
+    availableItems = {
+        "Chips":{
+            "price":2.50
+        },
+        "Soda":{
+            "price":6.10
+        },
+        "Grapes":{
+            "price": 5.25
+        }
+    }
+    print("please choose from our available items:")
+    print(availableItems)
     counter = 0
     itemList = []
+    nameVar = ""
     while counter < 2:   
-        nameVar = str(input("Enter the item name"))
-        priceVar = float(input("Enter the item price"))
+        while nameVar not in ["Chips", "Soda","Grapes"]:
+            nameVar = str(input("Enter the item name"))
+            if nameVar not in ["Chips", "Soda","Grapes"]:
+                print("Sorry, this item is not available.")
+        priceVar = availableItems[nameVar]["price"]
         qtyVar = int(input("Enter the item quantity"))
         if counter == 0:
             item1 = ItemToPurchase(nameVar, priceVar, qtyVar)
@@ -21,6 +38,7 @@ def main():
         else:
              item2 = ItemToPurchase(nameVar, priceVar, qtyVar)
              itemList.append(item2)
+        nameVar=""
         counter += 1
     totalCost = 0
     for item in itemList:
