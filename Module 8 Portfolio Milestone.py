@@ -54,7 +54,7 @@ class ShoppingCart:
     def get_cost_of_cart(self):
         cost = 0.0
         for item in self.cart_items:
-            cost = cost + item.price
+            cost = cost + (item.price * item.quantity)
         print('$'+str(cost))
 
     def print_total(self):
